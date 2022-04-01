@@ -259,14 +259,14 @@ class Reader:
 
         # Annotations
         annotations = {}
-        if columns[4] != '_':
-            for part in columns[4].split('|'):
-                res = re.search(r'([^[]*)(\[(\d*)\])*$', part)
-                label = res.group(1)
-                label_id = res.group(3)
-                if not label_id:
-                    label_id = str(uuid.uuid4())
-                annotations[label_id] = label
+        if columns[3] != '_': #[4] != '_':
+            #for part in columns[4].split('|'):
+            res = re.search(r'([^[]*)(\[(\d*)\])*$', columns[3]) #(r'([^[]*)(\[(\d*)\])*$', part)
+            label = res.group(1)
+            label_id = res.group(3)
+            if not label_id:
+                label_id = str(uuid.uuid4())
+            annotations[label_id] = label
 
         return SpanAnnotation(
             span=Span(
